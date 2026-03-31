@@ -1,21 +1,21 @@
-let uploadINput = document.createElement("#upload");
-let btnAdd = document.createElement("#addImage");
-let glaeria = document.createElement(".galeria");
-let carrossel = document.createElement(".carrossel");
+let uploadInput = document.querySelector("#upload");
+let btnAdd = document.querySelector("#addImage");
+let galeria = document.querySelector(".galeria");
+let carrossel = document.querySelector(".carrossel");
 
 let imagens = [];
 btnAdd.addEventListener("click", ()=>{
-    let imageURL = uploadINput.value.trim();
+    let imageURL = uploadInput.value.trim();
     if(imageURL=== "")return;// se a imagem for vazia, não faz nada
     imagens.push(imageURL);
     atualizarGaleria();//recarrega a galeria
     atualizarCarrossel();//recarrega carrossel
-    uploadINput.value = "";//limpa o input
+    uploadInput.value = "";//limpa o input
 });
 
 //atualizar Galeria
 function atualizarGaleria(){
-    glaeria.innerHTML = "";//limpa a galeria
+    galeria.innerHTML = "";//limpa a galeria
     imagens.forEach(
         (imagem, index) =>{
             let div = document.createElement("div");
@@ -27,12 +27,12 @@ function atualizarGaleria(){
             btnRemove.classList.add("remove");
             btnRemove.addEventListener("click", ()=>{
                 imagens.splice(index,1);
-                atualoizarGaleria();//recursão
+                atualizarGaleria();//recursão
 
             });
             div.appendChild(img);
             div.appendChild(btnRemove);
-            glaeria.appendChild(div);
+            galeria.appendChild(div);
         }
     )
 }
